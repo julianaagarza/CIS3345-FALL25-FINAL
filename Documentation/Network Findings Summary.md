@@ -69,13 +69,3 @@ When two suspicious events occur in close sequence, it supports a narrative of i
 - These findings support the possibility that the altered W-2 was uploaded using this workstation.
 
 ---
-
-## Documentation Stored
-The following network-related artifacts have been organized in the project documentation:
-
-- PCAP screenshots and filtered views  
-- Extracted Wireshark summaries  
-- Notes describing upload patterns and timestamps  
-
-These materials support reporting, validation, and the final presentation.
-
