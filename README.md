@@ -8,13 +8,15 @@ University of the Incarnate Word
 
 This project simulates a real-world digital forensic investigation involving suspected mortgage document fraud. Internal reviewers at a lending institution noticed irregularities in a W-2 submitted for a borrower named John Doe. The loan officer responsible for processing the file claimed that all documents were uploaded exactly as received from the applicant. However, several system indicators suggested possible misconduct.
 
-### Case Scenario: The Suspicious Loan Officer – A Mortgage Document Fraud Case
+---
 
-● **Core Concept:**  
-We are digital forensic investigators assigned to analyze activity on a loan officer’s workstation. A W-2 document submitted during a mortgage application appeared inconsistent with employer-issued files. The timing of events on the loan officer’s computer raised concerns that the document may have been altered and uploaded internally rather than provided by the borrower.
+## Case Scenario: The Suspicious Loan Officer – A Mortgage Document Fraud Case
 
-● **Background Scenario:**  
-Several red flags were discovered:
+### Core Concept: 
+- We are digital forensic investigators assigned to analyze activity on a loan officer’s workstation. A W-2 document submitted during a mortgage application appeared inconsistent with employer-issued files. The timing of events on the loan officer’s computer raised concerns that the document may have been altered and uploaded internally rather than provided by the borrower.
+
+### Background Scenario:
+**Several red flags were discovered:**
 
 - Failed SSH login attempts occurred shortly before the suspicious activity window.  
 - A final W-2 file for John Doe was created and modified within minutes—unusual for authentic employer documents.  
@@ -23,7 +25,9 @@ Several red flags were discovered:
 
 Because these events all occurred closely together, the lender initiated a forensic review to determine whether the workstation had been used to alter and submit a falsified document.
 
-● **Key Forensic Tasks Performed:**
+---
+
+## Key Forensic Tasks Performed:
 
 - **Verify Evidence Integrity:** Checked SHA-256 hashes of all PDFs, EML files, and logs.  
 - **Analyze W-2 Metadata:** Used ExifTool to review timestamps, creator fields, and modification history.  
@@ -31,7 +35,6 @@ Because these events all occurred closely together, the lender initiated a foren
 - **Examine Email Headers:** Verified sender authenticity and detected spoofing indicators.  
 - **Review Network Traffic:** Analyzed PCAP files for POST uploads and correlated the upload timing with document edits.  
 - **Inspect SSH Logs:** Identified failed login attempts originating from an external IP.  
-- **Construct a Timeline:** Merged metadata, network, email, and log evidence into a consolidated sequence of events.
 
 This scenario allowed the team to practice real forensic workflows such as maintaining evidence integrity, applying multiple forensic tools, and correlating multiple forms of digital evidence to reach a conclusion.
 
@@ -90,6 +93,7 @@ The Wiki contains full technical documentation, including:
 This project was completed for CIS 3345 – Digital Forensics.  
 All evidence is fictional and created solely for educational use.
 
+---
 
 ## Story Point Contribution Summary
 
