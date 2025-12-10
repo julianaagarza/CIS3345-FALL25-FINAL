@@ -9,6 +9,11 @@ University of the Incarnate Word
 This project simulates a real-world digital forensic investigation involving suspected mortgage document fraud. Internal reviewers at a lending institution noticed irregularities in a W-2 submitted for a borrower named John Doe. The loan officer responsible for processing the file claimed that all documents were uploaded exactly as received from the applicant. However, several system indicators suggested possible misconduct.
 
 ---
+## Team
+- **Juliana Garza:** Lead Forensic Documentation & Environment Specialist
+- **Jaime Knott:** Forensic Analysis Specialist
+
+---
 
 ## Case Scenario: The Suspicious Loan Officer – A Mortgage Document Fraud Case
 
