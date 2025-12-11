@@ -44,27 +44,38 @@ All evidence was handled according to forensic best practices. Original evidence
 # 2. Evidence Overview
 
 ## 2.1 Evidence Received
-The following evidence was included in the mortgage fraud scenario:
+All evidence for this investigation was provided as part of the controlled forensic environment and placed into designated directories within the Ubuntu 24.04 VM. The evidence represented multiple categories of digital artifacts that, when analyzed together, could reveal whether the W-2 document was altered or fraudulently submitted.
+
+The evidence package included:
 
 | Evidence Type | Description |
 |---------------|-------------|
-| PDF Files | W-2 draft and final versions for John Doe, plus additional applicant PDFs |
-| Email Files | Two legitimate lender emails and one suspicious impersonation email |
-| PCAP File | Network traffic showing HTTP activity on the workstation |
-| SSH Logs | Authentication attempts recorded in `/var/log/auth.log` |
-| Documentation | Integrity log and chain of custody documentation |
+| **PDF Files** | Draft and final versions of John Doe’s W-2, plus supporting applicant PDFs used for comparison. |
+| **Email Files (.eml)** | Two legitimate lender emails and one suspicious email resembling an impersonation attempt. |
+| **PCAP File** | Packet capture from the workstation’s loopback interface, containing HTTP activity connected to the document submission. |
+| **SSH Authentication Logs** | Extracts of `/var/log/auth.log` showing login attempts around the time of the suspected fraudulent activity. |
+| **Documentation** | Chain of custody, integrity hash manifest, and baseline notes verifying proper evidence handling. |
 
-Each category was analyzed using appropriate forensic tools.
+Each evidence type contributed a different perspective: PDF metadata provided insight into document origin, emails clarified communication legitimacy, network traffic revealed submission activity, and system logs helped determine whether unauthorized access attempts occurred.
 
 ## 2.2 Evidence Handling and Integrity
-Upon receiving the evidence package, it was placed into specific directories inside the forensic VM. Immediately after placement:
+Proper handling and verification of evidence are core requirements in digital forensics. Immediately after receiving the files, the investigation team applied strict preservation procedures to ensure analytical results would remain defensible and repeatable.
 
-- SHA-256 hashes were generated for each file.
-- A chain of custody document was recorded.
-- Original files were marked as read-only to prevent modification.
-- A working directory structure was established for proper separation of original vs. analysis artifacts.
+Key preservation steps:
 
-These steps ensured that all conclusions drawn would be reproducible and verifiable.
+- **Controlled Placement:** All original evidence was moved into dedicated directories (`Documents/MortgageApps`, `Documents/Emails`) without alteration.
+- **Hash Verification:** SHA-256 hashes were generated for every PDF and email file to establish a cryptographic baseline. These values were recorded in an integrity log (`evidence_hash_manifest.txt`) for later comparison.
+- **Read-Only Protection:** Original evidence files were marked read-only to eliminate risk of accidental modification during analysis.
+- **Working Copies:** All examination activities—metadata extraction, email header parsing, PCAP inspection, and log review—were performed on separate working copies stored within analysis-specific directories.
+
+Integrity controls ensured:
+
+- The original evidence remained unchanged throughout the investigation.
+- Any future review or replication of the investigation would yield identical results.
+- All findings derived from the evidence could be confidently tied back to verified, unaltered sources.
+
+This careful preparation established a reliable foundation for subsequent analysis, enabling the investigative methodology to proceed without compromising evidentiary value.
+
 
 ---
 
