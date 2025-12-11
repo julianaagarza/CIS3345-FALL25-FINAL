@@ -81,32 +81,49 @@ This careful preparation established a reliable foundation for subsequent analys
 
 # 3. Methodology
 
-The investigation followed a structured, repeatable forensic workflow designed to ensure systematic analysis and proper correlation of events.
+The investigation followed a structured and repeatable forensic process designed to ensure that each evidence category was examined in a controlled, defensible, and technically sound manner. The methodology emphasized accuracy, chronological consistency, and cross-validation across different forms of digital evidence.
 
 ## 3.1 Overview of Approach
-The methodology consisted of:
 
-1. **PDF Metadata Analysis** – Examine document origins, creation/modification times, and software signatures.
-2. **Draft vs Final W-2 Comparison** – Compare metadata and structural differences to identify possible manipulation.
-3. **Email Header Examination** – Assess authenticity of communication by analyzing sending domains, timestamps, and formatting.
-4. **Network Traffic Review (PCAP)** – Identify upload activity, timestamp alignment, and source/destination indicators.
-5. **Tshark Structured Extraction** – Export network metadata to validate findings through structured analysis.
-6. **SSH Authentication Log Review** – Look for unauthorized login attempts that might correlate with suspicious activity.
-7. **Timeline Construction** – Establish chronological order to reveal intent, sequence, and causality.
+The investigation was conducted using a multi-stage workflow, with each stage targeting a specific evidence type and contributing to the overall reconstruction of events. The approach included:
+
+### **1. PDF Metadata Analysis**
+The W-2 documents (draft and final versions) were examined using ExifTool to extract metadata fields such as creation timestamps, modification timestamps, author information, and software signatures. Metadata inconsistencies can reveal document tampering or unauthorized regeneration.
+
+### **2. Draft vs. Final Document Comparison**
+Metadata outputs from both W-2 versions were compared line-by-line to identify differences in structure, software identifiers, and timestamp patterns. These differences help determine whether the final file evolved naturally from the draft or was independently recreated.
+
+### **3. Email Header Examination**
+Email files were parsed using standard text-based tools to inspect sender domains, routing information, timestamp integrity, and header formatting. Comparing legitimate lender communications to the suspicious email helped determine whether impersonation occurred.
+
+### **4. Network Traffic Review (PCAP Analysis)**
+Wireshark was used to inspect the packet capture file, focusing on HTTP POST events that could indicate file uploads. Timing, source information, and destination endpoints were analyzed to determine whether the altered W-2 was submitted through the workstation.
+
+### **5. Tshark Structured Extraction**
+To validate Wireshark findings and obtain structured metadata, tshark was used to export fields such as timestamps, source/destination IPs, and HTTP URIs into a CSV format. This provided a verifiable and searchable representation of key network events.
+
+### **6. SSH Authentication Log Review**
+System authentication logs were examined for failed or unauthorized login attempts. These attempts—especially when occurring close to document modification—can provide contextual clues about whether the workstation was probed or targeted before the fraudulent activity.
+
+### **7. Timeline Construction**
+A consolidated timeline was created by aligning events from all evidence categories. Matching metadata timestamps, email times, network transmissions, and log entries allowed investigators to determine sequence and intent with greater precision.
+
+Taken together, these steps built a comprehensive set of cross-validated findings that support the final conclusions.
 
 ## 3.2 Tools Used
-The following tools were used for analysis:
+
+Each tool was selected based on reliability, forensic defensibility, and suitability for the type of evidence under review:
 
 | Tool | Purpose |
 |------|---------|
-| **ExifTool** | Extract PDF metadata such as authorship, timestamps, and software signatures |
-| **diff utilities** | Compare metadata files and PDF structure line-by-line |
-| **Wireshark** | Visually inspect captured packets, filter HTTP activity |
-| **tshark** | Export packet metadata into CSV format for structured verification |
-| **grep / less** | Review email headers and log entries |
-| **Ubuntu 24.04 VM** | Provides an isolated, controlled forensic environment |
+| **ExifTool** | Extracts metadata from PDF files, including timestamps and creator information. |
+| **diff utilities** | Compares metadata and structural differences between draft and final W-2 documents. |
+| **Wireshark** | Allows detailed visual inspection of PCAP files and identification of HTTP events. |
+| **tshark** | Command-line extraction of structured packet data for validation and timestamp analysis. |
+| **grep / less** | Efficiently search and inspect email headers and system logs. |
+| **Ubuntu 24.04 VM** | Provides a clean, isolated forensic environment for reproducible analysis. |
 
-These tools were chosen due to reliability, repeatability, and standard acceptance in digital forensics.
+Together, these tools formed the technical backbone of the investigation, ensuring that each finding was supported by industry-standard forensic practices.
 
 ---
 
