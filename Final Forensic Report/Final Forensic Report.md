@@ -5,21 +5,37 @@
 # 1. Introduction
 
 ## 1.1 Purpose of Investigation
-This forensic investigation was conducted to determine whether a W-2 document submitted during the mortgage application process was altered, fraudulently created, or submitted through deceptive means. The evidence package included PDF files, emails, captured network traffic, authentication logs, and documentation verifying evidence integrity. The investigation aimed to determine:
+This investigation was initiated in response to concerns raised during a mortgage application review, where a submitted W-2 document appeared inconsistent with standard employer-issued formatting and timing. The forensic team was tasked with determining whether the document had been altered, fraudulently generated, or submitted through deceptive means. The case centers on a workstation believed to have been used to prepare and transmit the questionable file, and the goal of this investigation is to determine:
 
-- Whether the final W-2 was manipulated.
-- Whether communications around the submission were legitimate.
-- Whether the workstation activity surrounding the submission indicated intentional fraud.
-- Whether network or authentication activity supported or contradicted the suspected fraud.
+- Whether the final W-2 document was modified or fabricated locally.
+- Whether email communications associated with the submission were legitimate or fraudulent.
+- Whether the workstation’s network and system activity aligns with intentional document manipulation.
+- Whether any attempted unauthorized access contributed to suspicious behavior.
+
+To accomplish this, investigators analyzed multiple categories of digital evidence, including PDF metadata, email headers, packet capture data, and system authentication logs. The findings from these independent sources were correlated to build a comprehensive understanding of the events surrounding the document submission.
 
 ## 1.2 Scope of Investigation
-This investigation evaluated only the evidence provided within the configured forensic environment. The scope includes:
+This investigation examines only the evidence provided within a controlled forensic environment. A preconfigured Ubuntu 24.04 virtual machine was used to ensure isolation, repeatability, and integrity throughout the analysis. Original evidence files—PDFs, .eml email messages, PCAP data, and authentication logs—were preserved in read-only form, and all examination was performed on working copies in accordance with forensic best practices.
 
-- Metadata and structure of PDF W-2 files.
-- Email headers and content for authenticity verification.
-- Packet capture data to determine upload activity.
-- System logs to identify unauthorized access attempts.
-- Correlation of all timestamps for timeline determination.
+The scope of this report includes:
+
+- Extraction and evaluation of metadata from the draft and final W-2 documents.
+- Examination of email headers and message attributes to assess authenticity.
+- Inspection of network activity to identify file uploads and correlate timestamps.
+- Review of system authentication logs for signs of unauthorized access attempts.
+- Construction of a consolidated timeline to establish sequence and intent.
+
+The investigation adheres to core digital forensic principles:
+
+- **Integrity:** Original evidence remains unaltered; all actions are performed on verified duplicates.
+- **Repeatability:** Every step is documented so that another analyst can reproduce results.
+- **Minimization of Change:** Only noninvasive tools and read-only access methods were used.
+
+Assumptions and constraints relevant to the investigation:
+
+- No full disk image of the workstation was provided; analysis is limited to the evidence package.
+- Network captures include only loopback activity; external traffic was not available.
+- The investigation relies on the timestamps present in the provided artifacts, assuming they were not tampered with before intake.
 
 All evidence was handled according to forensic best practices. Original evidence was never modified. Only copies were used for analysis.
 
