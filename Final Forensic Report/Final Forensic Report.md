@@ -289,38 +289,60 @@ The precise alignment of these events strongly suggests coordinated intent rathe
 
 # 6. Final Interpretation
 
-After analyzing all evidence categories, the following conclusions are supported:
+The collective analysis of metadata, email communications, network transmissions, and authentication logs presents a consistent and corroborated narrative. Each evidence category,when examined individually,showed indicators of irregularity, but when aligned chronologically, these indicators formed a coherent pattern strongly suggestive of intentional document manipulation and fraudulent submission.
 
-- The W-2 submitted during the mortgage application was **altered locally**, not employer-generated.  
-- The manipulated document was **submitted intentionally** shortly after modification.  
-- The suspicious email associated with the submission was indeed fraudulent.  
-- SSH log activity, though unsuccessful, occurred close enough to be relevant contextual evidence.  
-- The combination of metadata, communication irregularities, and network behavior forms a coherent narrative of deliberate fraud.
+Several key conclusions emerge from this synthesis:
+
+- **The final W-2 document was created and modified locally** within a very short time span, which is inconsistent with employer-issued payroll documentation. The metadata clearly attributes creation to the workstation rather than an external payroll system.
+- **The suspicious email was not sent from the lender**, despite being crafted to resemble legitimate correspondence. The altered domain and header inconsistencies demonstrate deliberate impersonation.
+- **The network capture confirms the modified W-2 was uploaded from the workstation**, and the upload occurred minutes after both the document modification and the fraudulent email. This strengthens the timeline and suggests intentional submission rather than accidental or automated activity.
+- **The SSH authentication attempts**, although unsuccessful, occurred shortly before the creation of the fraudulent W-2. While they did not result in system compromise, their timing adds context to the unusual activity occurring on the workstation.
+
+Taken together, the evidence indicates not an isolated anomaly but a deliberate workflow: creation → modification → impersonation email → upload. Such a structured sequence supports a finding of intentional misuse of the workstation to falsify mortgage-related documents.
 
 ---
 
 # 7. Conclusion
 
-- The modified W-2 document was intentionally generated and altered on the workstation.  
-- The fraudulent email indicates an attempt to deceive the lender into accepting the altered document.  
-- Network activity confirms intentional submission of the modified W-2.  
-- System logs provide supporting evidence of suspicious behavior occurring before the document activity.
+This investigation concludes that the workstation was actively used in an attempt to commit mortgage document fraud. The findings are supported by the following determinations:
 
-The investigation concludes that the workstation was used as part of a deliberate attempt to falsify mortgage-related documents.
+- **Local Document Manipulation:** The final W-2 was not produced by an employer system. Instead, it was manually created and edited on the workstation in a timeline that aligns with suspicious communications and uploads.
+- **Fraudulent Communication:** An email intended to impersonate the lender was sent within minutes of the document modification. Its header structure and altered domain confirm that it did not originate from an authorized source.
+- **Intentional File Submission:** Network analysis demonstrates that the modified W-2 was knowingly uploaded via an HTTP POST request, indicating purposeful transmission rather than background or automated activity.
+- **Supporting Contextual Evidence:** Failed SSH attempts in the minutes preceding the document activity add environmental context, suggesting probing or reconnaissance behavior near the time of the fraud.
+
+Overall, the digital evidence forms a unified picture of intent, preparation, and execution, demonstrating that the workstation was central to the fraudulent activity. No evidence suggests external compromise; rather, the activity was initiated by a user with access to the system.
 
 ---
 
 # 8. Recommendations
 
-| Area | Recommendation |
-|-------|--------------|
-| **Authentication Security** | Require MFA and restrict SSH exposure to internal networks only |
-| **Workstation Monitoring** | Implement logging of sensitive file access and modification events |
-| **Network Monitoring** | Alert on outbound uploads to unapproved endpoints |
-| **User Awareness Training** | Educate users on identifying fraudulent emails and domain spoofing |
-| **System Hardening** | Enforce stronger password policies and audit SSH services regularly |
+To mitigate the risk of similar fraudulent activity in the future, the following recommendations are advised across multiple security domains:
 
-Applying these recommendations would reduce risks associated with document fraud, unauthorized changes, and impersonation attempts.
+### **8.1 Authentication and Access Controls**
+- Require multi-factor authentication (MFA) for all remote or administrative access.
+- Restrict SSH availability to internal networks or trusted IP address ranges.
+- Regularly audit authentication logs to detect abnormal login patterns or repeated failed attempts.
+
+### **8.2 Workstation Monitoring**
+- Enable file integrity monitoring on sensitive directories, including those containing payroll, tax, or financial documents.
+- Log and alert on unusual patterns of file creation, rapid modification, or regeneration of existing documents.
+- Enforce strict separation between user-modifiable folders and areas storing official documents.
+
+### **8.3 Network Security**
+- Implement outbound upload monitoring that alerts on POST requests to unauthorized or unknown endpoints.
+- Use data loss prevention (DLP) rules to detect potential exfiltration attempts involving financial documents.
+
+### **8.4 User Communication Awareness**
+- Train staff to recognize fraudulent or spoofed emails, including subtle domain alterations and formatting anomalies.
+- Require verification procedures for high-risk communications, such as financial submissions or document requests.
+
+### **8.5 System Hardening**
+- Enforce strong password policies and periodic rotations.
+- Disable unused services and review SSH configurations for exposure risks.
+- Maintain updated software versions and security patches to reduce exploitation opportunities.
+
+These recommendations, if implemented, will strengthen the organization’s ability to detect, prevent, and respond to document fraud, impersonation attempts, and unauthorized activity on critical workstations.
 
 ---
 
