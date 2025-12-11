@@ -102,7 +102,8 @@ All evidence is fictional and created solely for educational use.
 
 ## Story Point Contribution Summary
 
-| Member | Total Story Points | Contribution Percentage |
-|--------|---------------------|------------------------|
-| **Juliana Garza** | **36** | **55%**  
-| **Jaime Knott**   | **30** | **45%**
+| **Team Member** | **Story Points** | **Contribution %** |
+| :--- | :---: | :---: |
+| Juliana Garza | 36 | 55% |
+| Jaime Knott | 30 | 45% |
+| **Total** | **66** | **100%** |
